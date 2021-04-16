@@ -1,0 +1,52 @@
+{
+  "name": "@cvillalobos/prettyutil",
+  "repository": "https://github.com/cesar-villalobos/prettyutil.git",
+  "description": "Utility functions to parse, validate and generate data",
+  "main": "build/main.js",
+  "types": "build/main.d.ts",
+  "version": "1.0.0",
+  "scripts": {
+    "clean": "rimraf coverage build tmp",
+    "build": "tsc -p tsconfig.release.json",
+    "build:watch": "tsc -w -p tsconfig.release.json",
+    "lint": "eslint . --ext .ts,.tsx",
+    "test": "jest --coverage && jest-coverage-badges --output './badges'",
+    "test:watch": "jest --watch"
+  },
+  "keywords": [
+    "chile",
+    "chilean",
+    "chileno",
+    "validator",
+    "validador",
+    "run",
+    "rut",
+    "cedula",
+    "identidad"
+  ],
+  "author": {
+    "name": "Cesar Villalobos",
+    "email": "cesar.villalobos@gmail.com",
+    "url": "https://www.cesar.cl/"
+  },
+  "license": "GPL-3.0-or-later",
+  "devDependencies": {
+    "@types/jest": "^26.0.20",
+    "@types/node": "^14.14.20",
+    "@typescript-eslint/eslint-plugin": "~2.34.0",
+    "@typescript-eslint/parser": "~2.34.0",
+    "eslint": "~7.17.0",
+    "eslint-config-prettier": "~7.1.0",
+    "eslint-plugin-jest": "~24.1.3",
+    "jest": "^26.6.3",
+    "jest-coverage-badges": "^1.1.2",
+    "prettier": "~2.2.1",
+    "rimraf": "~3.0.2",
+    "ts-jest": "^26.4.4",
+    "tslint": "^6.1.3",
+    "tslint-config-prettier": "^1.18.0",
+    "tslint-microsoft-contrib": "^6.2.0",
+    "tsutils": "~3.19.1",
+    "typescript": "^4.1.3"
+  }
+}
