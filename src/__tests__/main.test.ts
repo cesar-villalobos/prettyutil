@@ -11,6 +11,7 @@ import {
   RutFormat,
   validateRutList,
   deconstructRut,
+  format,
 } from '../main';
 
 describe('isRutLike', () => {
@@ -211,5 +212,13 @@ describe('generateRut', () => {
     while (runs--) {
       expect(validateRut(generateRut())).toEqual(true);
     }
+  });
+});
+
+describe('format', () => {
+  it('Should format rut values', () => {
+    expect(format('')).toEqual('');
+    expect(format('1-98765432')).toEqual('19.876.543-2');
+    expect(format('19')).toEqual('19');
   });
 });

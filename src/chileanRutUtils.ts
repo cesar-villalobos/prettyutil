@@ -153,22 +153,28 @@ export const validate = (rut: string): boolean => {
 
 export const format = (rut: string): string => {
   rut = clean(rut);
+  let result;
 
-  let result = rut.slice(-4, -1) + '-' + rut.substr(rut.length - 1);
-  for (let i = 4; i < rut.length; i += 3) {
-    result = rut.slice(-3 - i, -i) + '.' + result;
+  if (rut.length > 2) {
+    result = rut.slice(-4, -1) + '-' + rut.substr(rut.length - 1);
+    for (let i = 4; i < rut.length; i += 3) {
+      result = rut.slice(-3 - i, -i) + '.' + result;
+    }
+  } else {
+    result = rut;
   }
 
-  return result != '-' ? result : '';
+  return result;
 };
 
+/*
 export const limpiarRUT = (rut: string): string => {
   return String(rut).replace(/[^0-9a-z]/gi, '');
-};
+};*/
 
 export const calcularDv = (rut: string): string => {
   let suma = 0;
-  const rutReversa = limpiarRUT(rut).split('').reverse();
+  const rutReversa = clean(rut).split('').reverse();
 
   for (let i = 0, j = 2; i < rutReversa.length; i++, j < 7 ? j++ : (j = 2)) {
     suma += parseInt(rutReversa[i]) * j;
@@ -182,7 +188,7 @@ export const calcularDv = (rut: string): string => {
 
 export const validarRUT = (rut: string): boolean => {
   if (typeof rut === 'string' || typeof rut === 'number') {
-    const rutSinFormato = limpiarRUT(rut);
+    const rutSinFormato = clean(rut);
     if (rutSinFormato) {
       const rutSinDv = rutSinFormato.slice(0, -1);
       const rutDv = rutSinFormato.split('').pop().toLowerCase();
