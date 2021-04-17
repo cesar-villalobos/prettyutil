@@ -31,9 +31,9 @@ export default class RutUtil {
     return String(resultado);
   };
 
-  public validate = (rut: string): boolean => {
-    const rutSinFormato = this.clean(rut);
-    if (rutSinFormato) {
+  public validate = (rut: string | undefined): boolean => {
+    if (rut) {
+      const rutSinFormato = this.clean(rut);
       const rutSinDv = rutSinFormato.slice(0, -1);
       const rutDv = rutSinFormato.split('').pop().toLowerCase();
       return this.calculateDv(rutSinDv) === rutDv;

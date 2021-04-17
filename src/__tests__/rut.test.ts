@@ -32,6 +32,7 @@ describe('validateRut', () => {
       '34566754-k',
       '12.344.568-4',
       '32.456.356-k',
+      undefined,
     ];
 
     validRuts.forEach((test) => {
