@@ -159,7 +159,7 @@ export const format = (rut: string): string => {
     result = rut.slice(-3 - i, -i) + '.' + result;
   }
 
-  return result;
+  return result != '-' ? result : '';
 };
 
 export const limpiarRUT = (rut: string): string => {
