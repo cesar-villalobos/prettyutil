@@ -16,6 +16,9 @@ import {
   valida,
   validate,
   format,
+  limpiarRUT,
+  calcularDv,
+  validarRUT,
 } from './chileanRutUtils';
 
 export {
@@ -36,4 +39,7 @@ export {
   valida,
   validate,
   format,
+  limpiarRUT,
+  calcularDv,
+  validarRUT,
 };
