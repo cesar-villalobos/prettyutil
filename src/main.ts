@@ -1,43 +1,7 @@
-import {
-  isRutLike,
-  isSuspiciousRut,
-  cleanRut,
-  getRutDigits,
-  getRutVerifier,
-  calculateRutVerifier,
-  validateRut,
-  formatRut,
-  generateRut,
-  RutFormat,
-  validateRutList,
-  deconstructRut,
-  clean,
-  dv,
-  valida,
-  validate,
-  format,
-  calcularDv,
-  validarRUT,
-} from './chileanRutUtils';
+import RutUtil from './utils/Rut';
+import PhoneUtil from './utils/Phone';
 
-export {
-  isRutLike,
-  isSuspiciousRut,
-  cleanRut,
-  getRutDigits,
-  getRutVerifier,
-  calculateRutVerifier,
-  validateRut,
-  formatRut,
-  generateRut,
-  RutFormat,
-  validateRutList,
-  deconstructRut,
-  clean,
-  dv,
-  valida,
-  validate,
-  format,
-  calcularDv,
-  validarRUT,
-};
+const rutTools = new RutUtil();
+const phoneTools = new PhoneUtil();
+
+export { rutTools, phoneTools };
