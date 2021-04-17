@@ -161,3 +161,36 @@ export const format = (rut: string): string => {
 
   return result;
 };
+
+export const limpiarRUT = (rut: string): string => {
+  return String(rut).replace(/[^0-9a-z]/gi, '');
+};
+
+export const calcularDv = (rut: string): string => {
+  let suma = 0;
+  const rutReversa = limpiarRUT(rut).split('').reverse();
+
+  for (let i = 0, j = 2; i < rutReversa.length; i++, j < 7 ? j++ : (j = 2)) {
+    suma += parseInt(rutReversa[i]) * j;
+  }
+
+  const resultado = 11 - (suma % 11);
+  if (resultado === 11) return '0';
+  if (resultado === 10) return 'k';
+  return String(resultado);
+};
+
+export const validarRUT = (rut: string): boolean => {
+  if (typeof rut === 'string' || typeof rut === 'number') {
+    const rutSinFormato = limpiarRUT(rut);
+    if (rutSinFormato) {
+      const rutSinDv = rutSinFormato.slice(0, -1);
+      const rutDv = rutSinFormato.split('').pop().toLowerCase();
+      return calcularDv(rutSinDv) === rutDv;
+    } else {
+      return false;
+    }
+  } else {
+    return false;
+  }
+};
