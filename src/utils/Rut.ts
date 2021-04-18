@@ -1,11 +1,14 @@
 export default class RutUtil {
-  public clean = (rut: string): string => {
+  public clean = (rut: string | undefined | null): string => {
+    if (!rut) return '';
     return rut.replace(/^0+|[^0-9kK]+/g, '').toUpperCase();
   };
 
-  public format = (rut: string): string => {
+  public format = (rut: string | undefined | null): string => {
+    if (!rut) return '';
+
     rut = this.clean(rut);
-    let result = rut || '';
+    let result = rut;
 
     if (rut.length > 1) {
       result = rut.slice(-4, -1) + '-' + rut.substr(rut.length - 1);
@@ -17,7 +20,8 @@ export default class RutUtil {
     return result;
   };
 
-  public calculateDv = (rut: string): string => {
+  public calculateDv = (rut: string | undefined | null): string => {
+    if (!rut) return '';
     let suma = 0;
     const rutReversa = this.clean(rut).split('').reverse();
 
@@ -27,7 +31,7 @@ export default class RutUtil {
 
     const resultado = 11 - (suma % 11);
     if (resultado === 11) return '0';
-    if (resultado === 10) return 'k';
+    if (resultado === 10) return 'K';
     return String(resultado);
   };
 
@@ -35,7 +39,7 @@ export default class RutUtil {
     if (rut) {
       const rutSinFormato = this.clean(rut);
       const rutSinDv = rutSinFormato.slice(0, -1);
-      const rutDv = rutSinFormato.split('').pop().toLowerCase();
+      const rutDv = rutSinFormato.split('').pop().toUpperCase();
       return this.calculateDv(rutSinDv) === rutDv;
     } else {
       return false;

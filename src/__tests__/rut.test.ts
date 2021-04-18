@@ -13,26 +13,30 @@ describe('cleanRut', () => {
     expect(rutTools.clean('-')).toEqual('');
     expect(rutTools.clean('.')).toEqual('');
     expect(rutTools.clean('35fdlp34/d')).toEqual('3534');
+    expect(rutTools.clean(undefined)).toEqual('');
+    expect(rutTools.clean(null)).toEqual('');
   });
 });
 
 describe('validateRut', () => {
   it('Should validate a rut-like string', () => {
     const validRuts = [
-      '7775735-k',
+      '7775735-K',
       '18585543-0',
       '18348353-6',
       '06099089-1',
       '21.44.509.7-6',
+      '16790842-k',
     ];
     const invalidRuts = [
       '',
       '9.999.999-9',
       '14355245-5',
-      '34566754-k',
+      '34566754-K',
       '12.344.568-4',
       '32.456.356-k',
       undefined,
+      null,
     ];
 
     validRuts.forEach((test) => {
@@ -52,5 +56,19 @@ describe('formatRut', () => {
     expect(rutTools.format('4')).toEqual('4');
     expect(rutTools.format('1-98765432')).toEqual('19.876.543-2');
     expect(rutTools.format('19')).toEqual('1-9');
+    expect(rutTools.format(undefined)).toEqual('');
+    expect(rutTools.format(null)).toEqual('');
+  });
+});
+
+describe('CalculateDv', () => {
+  it('Should calculate DV values', () => {
+    expect(rutTools.calculateDv('')).toEqual('');
+    expect(rutTools.calculateDv(undefined)).toEqual('');
+    expect(rutTools.calculateDv(null)).toEqual('');
+    expect(rutTools.calculateDv('16495221')).toEqual('5');
+    expect(rutTools.calculateDv('5433151')).toEqual('7');
+    expect(rutTools.calculateDv('15280511')).toEqual('K');
+    expect(rutTools.calculateDv('22749162')).toEqual('0');
   });
 });
