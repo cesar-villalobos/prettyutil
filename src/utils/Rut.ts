@@ -5,7 +5,7 @@ export default class RutUtil {
 
   public format = (rut: string): string => {
     rut = this.clean(rut);
-    let result = rut;
+    let result = rut || '';
 
     if (rut.length > 1) {
       result = rut.slice(-4, -1) + '-' + rut.substr(rut.length - 1);
@@ -31,7 +31,7 @@ export default class RutUtil {
     return String(resultado);
   };
 
-  public validate = (rut: string | undefined): boolean => {
+  public validate = (rut: string | undefined | null): boolean => {
     if (rut) {
       const rutSinFormato = this.clean(rut);
       const rutSinDv = rutSinFormato.slice(0, -1);
