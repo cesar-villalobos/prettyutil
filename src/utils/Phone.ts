@@ -14,7 +14,7 @@ export default class PhoneUtil {
     prefix = '56',
     large = 11,
   ): string => {
-    if (!phone) return '';
+    if (!this.clean(phone)) return '';
     phone = this.clean(phone);
 
     if (
@@ -33,8 +33,8 @@ export default class PhoneUtil {
     prefix = '56',
     large = 11,
   ): boolean => {
-    if (!phone) return false;
-    phone = this.addPrefix(phone);
+    if (!this.clean(phone)) return false;
+    phone = this.addPrefix(this.clean(phone));
 
     if (phone.length == large && phone.slice(0, prefix.length) == prefix) {
       return true;

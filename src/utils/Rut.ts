@@ -5,7 +5,7 @@ export default class RutUtil {
   };
 
   public format = (rut: string | undefined | null): string => {
-    if (!rut) return '';
+    if (!this.clean(rut)) return '';
 
     rut = this.clean(rut);
     let result = rut;
@@ -21,7 +21,7 @@ export default class RutUtil {
   };
 
   public calculateDv = (rut: string | undefined | null): string => {
-    if (!rut) return '';
+    if (!this.clean(rut)) return '';
     let suma = 0;
     const rutReversa = this.clean(rut).split('').reverse();
 
@@ -36,8 +36,9 @@ export default class RutUtil {
   };
 
   public validate = (rut: string | undefined | null): boolean => {
-    if (rut) {
-      const rutSinFormato = this.clean(rut);
+    const rutSinFormato = this.clean(rut);
+
+    if (rutSinFormato) {
       const rutSinDv = rutSinFormato.slice(0, -1);
       const rutDv = rutSinFormato.split('').pop().toUpperCase();
       return this.calculateDv(rutSinDv) === rutDv;
