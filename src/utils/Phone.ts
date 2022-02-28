@@ -42,4 +42,15 @@ export default class PhoneUtil {
       return false;
     }
   };
+
+  public validateFormat = (
+    phone: string | undefined | null,
+    countryCode = '[1-9][0-9]{0,2}',
+    prefix = '',
+    length = 9
+  ): boolean => {
+    const lengthWithoutPrefix = length - prefix.length;
+    const regex = new RegExp(`^(\\+?${countryCode} ?)?[0-9]{${lengthWithoutPrefix}}$`);
+    return regex.test(phone);
+  };
 }

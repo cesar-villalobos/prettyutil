@@ -65,3 +65,30 @@ describe('validatePhone', () => {
     });
   });
 });
+
+describe('validateFormat', () => {
+  it('Should validate a phone-like string with specific format', () => {
+    const validPhones = [
+      '+56 987654321',
+      '56 987654321',
+      '56987654321',
+      '+1 987654321',
+    ];
+    const invalidPhones = [
+      '',
+      '56 9876    54321',
+      '56 987sometext654321',
+      '56 9 8 76 54 32 1',
+      undefined,
+      null,
+    ];
+
+    validPhones.forEach((test) => {
+      expect(phoneTools.validateFormat(test)).toEqual(true);
+    });
+
+    invalidPhones.forEach((test) => {
+      expect(phoneTools.validateFormat(test)).toEqual(false);
+    });
+  });
+});
