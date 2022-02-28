@@ -147,6 +147,20 @@ phoneTools.validate('978886666'); // Returns true
 phoneTools.validate('123456'); // Returns false
 ```
 
+### Verify if its a valid or invalid phone number acording with format
+
+Input: String Phone
+
+```javascript
+import { phoneTools } from 'prettyutils';
+
+phoneTools.validate('+56 987654321'); // Returns true
+phoneTools.validate('56 987654321'); // Returns true
+phoneTools.validate('56987654321'); // Returns true
+phoneTools.validate('+1 987654321'); // Returns true
+phoneTools.validate('56 987sometext654321'); // Returns false
+```
+
 ## Test
 
 ```
