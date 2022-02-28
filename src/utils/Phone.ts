@@ -50,7 +50,7 @@ export default class PhoneUtil {
     length = 9
   ): boolean => {
     const lengthWithoutPrefix = length - prefix.length;
-    const regex = new RegExp(`^(\+?${countryCode} ?)?[0-9]{${lengthWithoutPrefix}}$`);
+    const regex = new RegExp(`^(\\+?${countryCode} ?)?[0-9]{${lengthWithoutPrefix}}$`);
     return regex.test(phone);
   };
 }
